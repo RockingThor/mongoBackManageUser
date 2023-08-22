@@ -17,11 +17,11 @@ const productSchema= {
     subtitle: String,
     description: String,
     images:{
-        type: Object.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref:'Image'
     },
     sizes:{
-        type: Object.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref:'Size'
     },
     mrp: Number,
@@ -30,7 +30,7 @@ const productSchema= {
 
 const orderSchema={
     products: {
-        type: Object.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Product'
     },
     placedOn: Date
@@ -42,11 +42,11 @@ const userSchema= {
     username:String,
     password:String,
     orders: {
-        type:Object.Types.ObjectId,
+        type:Schema.Types.ObjectId,
         ref: 'Product'
     },
     wishlist:{
-        tyoe: Object.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Product'
     }
 }
@@ -58,10 +58,10 @@ const Order= mongoose.model('Order', orderSchema);
 const User= mongoose.model('User',userSchema);
 
 
-module.exports({
+module.exports={
     Image,
     Size,
     Product,
     Order,
     User
-});
+};
