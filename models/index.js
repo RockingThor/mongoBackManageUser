@@ -1,67 +1,80 @@
-const mongoose= require("mongoose");
-const {Schema}= mongoose;
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-const imageSchema={
+const imageSchema = {
     url: String,
-    meta:String,
-    isThumbnauil: Boolean
-}
+    meta: String,
+    isThumbnauil: Boolean,
+};
 
-const sizeSchema= {
+const sizeSchema = {
     sizes: [String],
-    isSize: Boolean
-}
+    isSize: Boolean,
+};
 
-const productSchema= {
+const productSchema = {
     title: String,
     subtitle: String,
     description: String,
-    images:{
+    images: {
         type: Schema.Types.ObjectId,
-        ref:'Image'
+        ref: "Image",
     },
-    sizes:{
+    sizes: {
         type: Schema.Types.ObjectId,
-        ref:'Size'
+        ref: "Size",
     },
     mrp: Number,
-    price: Number
-}
+    price: Number,
+};
 
-const orderSchema={
+const shoeSchema = {
+    title: String,
+    url: String,
+    product_details: String,
+    price: String,
+    image_list: [String],
+    features: [],
+    breadcrumbs: String,
+    brand: String,
+    asin: String,
+};
+
+const orderSchema = {
     products: {
         type: Schema.Types.ObjectId,
-        ref: 'Product'
+        ref: "Product",
     },
-    placedOn: Date
-}
+    placedOn: Date,
+};
 
-const userSchema= {
-    name:String,
-    email:String,
-    username:String,
-    password:String,
+const userSchema = {
+    name: String,
+    email: String,
+    username: String,
+    password: String,
     orders: {
-        type:Schema.Types.ObjectId,
-        ref: 'Product'
-    },
-    wishlist:{
         type: Schema.Types.ObjectId,
-        ref: 'Product'
-    }
-}
+        ref: "Product",
+    },
+    wishlist: {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+    },
+};
 
-const Image=mongoose.model('Image', imageSchema);
-const Size= mongoose.model('Size',sizeSchema);
-const Product= mongoose.model('Product', productSchema);
-const Order= mongoose.model('Order', orderSchema);
-const User= mongoose.model('User',userSchema);
+const Image = mongoose.model("Image", imageSchema);
+const Size = mongoose.model("Size", sizeSchema);
+const Product = mongoose.model("Product", productSchema);
+const Order = mongoose.model("Order", orderSchema);
+const User = mongoose.model("User", userSchema);
+const Shoe = mongoose.model("Shoe", shoeSchema);
 
-
-module.exports={
+module.exports = {
     Image,
     Size,
     Product,
     Order,
-    User
+    User,
+    Shoe,
 };
